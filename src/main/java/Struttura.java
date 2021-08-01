@@ -50,6 +50,10 @@ public class Struttura {
         Sottotitolo = sottotitolo;
     }
 
+    public Struttura(String titolo) {
+        Titolo = titolo;
+    }
+
     @Override
     public String toString() {
         return Sottotitolo.length() == 0 ? "Struttura{" + "Titolo='" + Titolo + ", elementi=" + elementi + "}" :

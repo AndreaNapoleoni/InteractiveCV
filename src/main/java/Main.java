@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Main {
     private static String AUTHOR = "Andrea Napoleoni";
@@ -24,16 +25,15 @@ public class Main {
             String benvenuto = String.format("Ciao! Ti do il benvenuto nel mio progetto di \"CV Interattivo\"");
             String presentazione = String.format("Mi chiamo %s ed ho %d anni.\n" +
                     "Sono uno sviluppatore con forte orientamento alla programmazione ad oggetti.\n" +
-                    "Oltre ad aver maturato esperienza con le diverse tecnologie, ho sviluppato attitudine a lavorare in\n" +
-                    "team ed alta flessibilità nel seguire più flussi contemporaneamente.\n" +
-                    "Sono alla ricerca di una realtà dinamica, all'interno della quale poter contribuire al massimo delle\n" +
-                    "mie capacità. Desidero mettermi in gioco ed imparare sempre più cose possibili, affindando quindi " +
-                    "skill e conoscenze.\nLaddove possibile sono disposto a mettermi in prima fila per raggiungere" +
-                    " il risultato richiesto.", AUTHOR, YEAR);
-            String sviluppoTestSuBrowser = "Sviluppo di Test Automatizzati su Browser (Chrome, Edge, Firefox, IE, \" +\n" +
-                    "                \"etc) e su Dispositivi Mobile (Android, iOS) mediante Selenium e Appium, interagendo " +
-                    "con framework \" +\n" +
-                    "                \"proprietari dei clienti, dell'azienda e con alcuni OpenSource.";
+                    "Oltre ad aver maturato esperienza con le diverse tecnologie, ho sviluppato attitudine a lavorare " +
+                    "in team ed alta flessibilità nel seguire più flussi contemporaneamente.\n" +
+                    "Sono alla ricerca di una realtà dinamica, all'interno della quale poter contribuire al massimo " +
+                    "delle mie capacità. Desidero mettermi in gioco ed imparare sempre più cose possibili, affindando " +
+                    "quindi skill e conoscenze.\nLaddove possibile sono disposto a mettermi in prima fila " +
+                    "per raggiungere il risultato richiesto.", AUTHOR, YEAR);
+            String sviluppoTestSuBrowser = "Sviluppo di Test Automatizzati su Browser (Chrome, Edge, Firefox, IE, " +
+                    " etc) e su Dispositivi Mobile (Android, iOS) mediante Selenium e Appium, interagendo " +
+                    "con framework proprietari dei clienti, dell'azienda e con alcuni OpenSource.";
             String creazioneDB = "Creazione e gestione di Database MySQL.";
             String dashboard = "Realizzazione Dashboard mediante Node-RED per visualizzazione " +
                     "dei dati prelevati dal Database.";
@@ -93,6 +93,65 @@ public class Main {
             istruzione.addStruttura(magistrale);
             istruzione.addStruttura(triennale);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            Categoria lingue = new Categoria("Lingue");
+            Struttura italiano = new Struttura();
+            italiano.setTitolo("Italiano");
+            italiano.setSottotitolo("Madrelingua");
+            Struttura inglese = new Struttura();
+            inglese.setTitolo("Inglese");
+            inglese.addElement("Ascolto: B2");
+            inglese.addElement("Parlato: B2");
+            inglese.addElement("Scritto: B1");
+            lingue.addStruttura(italiano);
+            lingue.addStruttura(inglese);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            Categoria contatti = new Categoria("Contatti");
+            Struttura email = new Struttura();
+            email.setTitolo("E-mail");
+            email.setSottotitolo("napoleoniandrea@pec.it");
+            Struttura telefono = new Struttura();
+            telefono.setTitolo("Telefono");
+            telefono.setSottotitolo("+39 3791756740");
+            contatti.addStruttura(email);
+            contatti.addStruttura(telefono);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            Categoria competenze = new Categoria("Competenze");
+            competenze.addStruttura(new Struttura("Git","7/10"));
+            competenze.addStruttura(new Struttura("Java","8/10"));
+            competenze.addStruttura(new Struttura("MySQL","7/10"));
+            competenze.addStruttura(new Struttura("Docker","6/10"));
+            competenze.addStruttura(new Struttura("Kubernetes","5/10"));
+            competenze.addStruttura(new Struttura("Selenium","8/10"));
+            competenze.addStruttura(new Struttura("Appium","8/10"));
+            competenze.addStruttura(new Struttura("Maven","7/10"));
+            competenze.addStruttura(new Struttura("Gradle","5/10"));
+            competenze.addStruttura(new Struttura("HTML & CSS","6/10"));
+            competenze.addStruttura(new Struttura("Node-RED","9/10"));
+            competenze.addStruttura(new Struttura("Sistemi Unix","7/10"));
+            competenze.addStruttura(new Struttura("Office","7/10"));
+            competenze.addStruttura(new Struttura("SSH","8/10"));
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            Categoria ide = new Categoria("IDE");
+            ide.addStruttura(new Struttura("IntelliJ"));
+            ide.addStruttura(new Struttura("VS Code"));
+            ide.addStruttura(new Struttura("Eclipse"));
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            ArrayList<Categoria> all = new ArrayList<Categoria>();
+            all.add(lavoro);
+            all.add(softSkill);
+            all.add(istruzione);
+            all.add(competenze);
+            all.add(ide);
+            all.add(lingue);
+
+            System.out.println(separazione);
+            for(Categoria c : all){
+                    System.out.println(c);
+                    System.out.println(separazione);
+            }
+
+
        /* System.out.println(separazione);
         System.out.println(benvenuto);
         System.out.println(separazione);
@@ -104,9 +163,9 @@ public class Main {
 
 
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println(separazione);
+            /*System.out.println(separazione);
             System.out.println(lavoro);
             System.out.println(separazione);
             System.out.println(softSkill);
-    }
+            */    }
 }

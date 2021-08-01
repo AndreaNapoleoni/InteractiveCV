@@ -24,7 +24,7 @@ public class Main {
             String separazione = "******************************************************";
             String benvenuto = String.format("Ciao! Ti do il benvenuto nel mio progetto di \"CV Interattivo\"");
             String presentazione = String.format("Mi chiamo %s ed ho %d anni.\n" +
-                    "Sono uno sviluppatore con forte orientamento alla programmazione ad oggetti.\n" +
+                    "Sono uno sviluppatore con forte orientamento alla programmazione ad oggetti lato backend.\n" +
                     "Oltre ad aver maturato esperienza con le diverse tecnologie, ho sviluppato attitudine a lavorare " +
                     "in team ed alta flessibilità nel seguire più flussi contemporaneamente.\n" +
                     "Sono alla ricerca di una realtà dinamica, all'interno della quale poter contribuire al massimo " +
@@ -42,7 +42,7 @@ public class Main {
                     "in ambiente Kubernetes.";
             String mvngradle = "Familiarità con Maven e Gradle";
             String uniLavoro = "Tra anni universitari ed esperienze lavorative ho imparato a:";
-            String lavoroInTeam = "Lavorare in team, sincronizzandomi con il team su ciascun task da svolgere.";
+            String lavoroInTeam = "Lavorare sincronizzandomi con il team su ciascun task da svolgere.";
             String problemSolving = "Affinare le skill di Problem Solving, ricercando sempre la miglior soluzione " +
                     "per far fronte al problema posto.";
             String tempo = "Individuare il giusto tempo da dedicare a ciascun progetto affidatomi, " +
@@ -52,11 +52,11 @@ public class Main {
             String magistr = "Università degli Studi di Milano - Bicocca";
             String magistrDate = "Laurea magistrale | Ott 2018 - Ott 2020";
             String laureaMagistr = "Laurea magistrale in Informatica\n " +
-                    "Tesi: \tDashboard per visualizzazione ed analisi di dati su piattaforma IoT.";
+                    "\tTesi: Dashboard per visualizzazione ed analisi di dati su piattaforma IoT.";
             String trienn = "Università degli Studi di Bari - Aldo Moro";
             String triennDate = "Laurea triennale | Ott. 2014- Ott. 2018";
             String laureaTrienn = "Laurea triennale in Informatica e Tecnologie per la Produzione del Software\n " +
-                    "Tesi: Analisi e Progettazione di un sistema per la prenotazione e gestione di aule universitarie.";
+                    "\tTesi: Analisi e Progettazione di un sistema per la prenotazione e gestione di aule universitarie.";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             Categoria lavoro = new Categoria("Esperienze lavorative");

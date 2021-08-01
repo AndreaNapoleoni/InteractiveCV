@@ -47,9 +47,16 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria{" +
-                "nomeCategoria='" + nomeCategoria + '\'' +
-                ", strutture=" + strutture +
-                '}';
+        String tmp = "";
+
+        if(this.getNomeCategoria().length()>0){
+            tmp+=getNomeCategoria()+"\n";
+        }
+
+        if(this.getStruttura().size()>0){
+            tmp+=getStruttura().toString();
+        }
+
+        return tmp;
     }
 }

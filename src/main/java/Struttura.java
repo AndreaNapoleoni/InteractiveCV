@@ -54,13 +54,29 @@ public class Struttura {
         Titolo = titolo;
     }
 
+    public String prettyList(){
+        String tmp = "\n";
+        for(String s : elementi){
+            tmp+=String.format("\t- %s \n",s);
+        }
+        return tmp;
+    }
+
     @Override
     public String toString() {
-        return Sottotitolo.length() == 0 ? "Struttura{" + "Titolo='" + Titolo + ", elementi=" + elementi + "}" :
-                "Struttura{" +
-                        "Titolo='" + Titolo + '\'' +
-                        ", Sottotitolo='" + Sottotitolo + '\'' +
-                        ", elementi=" + elementi +
-                        '}';
+        String tmp = "\n";
+
+        if(this.getTitolo().length()>0){
+            tmp+=getTitolo()+"\n";
+        }
+        if(this.getSottotitolo().length()>0){
+            tmp+=getSottotitolo()+"\n";
+        }
+        if(this.getElementi().size()>0){
+            tmp+=prettyList();
+        }
+
+        return tmp;
+
     }
 }

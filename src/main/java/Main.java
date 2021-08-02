@@ -6,10 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     private static String AUTHOR = "Andrea Napoleoni";
@@ -26,7 +23,7 @@ public class Main {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        separazione = "******************************************************";
+        separazione = "***************************";
         benvenuto = String.format("Ciao! Ti do il benvenuto nel mio progetto di \"CV Interattivo\"");
         presentazione = String.format("Mi chiamo %s ed ho %d anni.\n" +
                 "Sono uno sviluppatore con forte orientamento alla programmazione ad oggetti lato backend.\n" +
@@ -63,40 +60,16 @@ public class Main {
         String laureaTrienn = "Laurea triennale in Informatica e Tecnologie per la Produzione del Software\n " +
                 "\tTesi: Analisi e Progettazione di un sistema per la prenotazione e gestione di aule universitarie.";
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        Categoria lavoro = new Categoria("Esperienze lavorative");
-        Struttura esperienza1 = new Struttura();
-        esperienza1.setTitolo("Test Automation Engeneer");
-        esperienza1.setSottotitolo(reply);
-        esperienza1.addElement(sviluppoTestSuBrowser);
-        esperienza1.addElement(creazioneDB);
-        esperienza1.addElement(dashboard);
-        esperienza1.addElement(git);
-        esperienza1.addElement(dockerKubernetes);
-        esperienza1.addElement(mvngradle);
-        lavoro.addStruttura(esperienza1);
+        Struttura esperienza1 = new Struttura("Test Automation Engeneer",
+                new ArrayList<String>(Arrays.asList(reply, sviluppoTestSuBrowser, creazioneDB, dashboard, git, dockerKubernetes, mvngradle)));
+        Categoria lavoro = new Categoria("Esperienze lavorative", new ArrayList<Struttura>(Collections.singleton(esperienza1)));
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        Categoria softSkill = new Categoria("Soft Skill");
-        Struttura esperienza2 = new Struttura();
-        esperienza2.setTitolo(uniLavoro);
-        esperienza2.addElement(lavoroInTeam);
-        esperienza2.addElement(problemSolving);
-        esperienza2.addElement(tempo);
-        esperienza2.addElement(proattivo);
-        softSkill.addStruttura(esperienza2);
+        Struttura esperienza2 = new Struttura(uniLavoro, new ArrayList<String>(Arrays.asList(lavoroInTeam, problemSolving, tempo, proattivo)));
+        Categoria softSkill = new Categoria("Soft Skill", new ArrayList<Struttura>(Collections.singleton(esperienza2)));
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        Categoria istruzione = new Categoria("Istruzione precedente");
-        Struttura magistrale = new Struttura();
-        magistrale.setTitolo(magistr);
-        magistrale.setSottotitolo(magistrDate);
-        magistrale.addElement(laureaMagistr);
-        Struttura triennale = new Struttura();
-        triennale.setTitolo(trienn);
-        triennale.setSottotitolo(triennDate);
-        triennale.addElement(laureaTrienn);
-
-        istruzione.addStruttura(magistrale);
-        istruzione.addStruttura(triennale);
+        Struttura magistrale = new Struttura(magistr, magistrDate, new ArrayList<String>(Collections.singleton(laureaMagistr)));
+        Struttura triennale = new Struttura(trienn, triennDate, new ArrayList<String>(Collections.singleton(laureaTrienn)));
+        Categoria istruzione = new Categoria("Istruzione", new ArrayList<Struttura>(Arrays.asList(magistrale, triennale)));
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         Categoria lingue = new Categoria("Lingue");
         Struttura italiano = new Struttura();
@@ -150,20 +123,23 @@ public class Main {
         all.add(lingue);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        System.out.println(separazione);
+        System.out.println(benvenuto);
+        System.out.println(presentazione);
+
         printMenu(all);
-        System.out.println("[0] - Esci");
         ArrayList<Categoria> copia = all;
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         boolean avereInfo = true;
-
+        int scelta = 10;
+        String opt = "";
         while (avereInfo) {
-
-            int scelta = 0;
             try {
                 if (copia.size() != 0) {
-                    scelta = Integer.parseInt(reader.readLine().trim());
+                    opt = reader.readLine().trim();
+                    scelta = Integer.parseInt(opt);
                     if (scelta >= 1 && scelta <= copia.size()) {
                         System.out.println(separazione);
                         System.out.println("Hai scelto " + scelta);
@@ -184,83 +160,29 @@ public class Main {
                             }
 
                         }
-                        System.out.println(separazione);
-
-                        //System.out.println(inAnalisi);
-
                         copia.remove(copia.get(scelta - 1));
-
-                        printMenu(copia);
                     } else {
-                        System.out.println("Mi dispiace ma hai scelto un'opzione non valida");
+                        System.out.println("Mi dispiace ma \"" + opt + "\" non è tra le operazioni previste");
                     }
                 } else {
-                    System.out.println("Ora sai tutto di me. Se il mio profilo è in linea con quel che cercavi, scrivimi all'indirizzo <<napoleoniandrea@pec.it>>.\nCiao!");
+                    System.out.println("Ora sai tutto di me. Se il mio profilo è in linea con quel che cercavi, " +
+                            "scrivimi all'indirizzo <<napoleoniandrea@pec.it>>.\n" +
+                            "Ciao!");
+                    break;
                 }
             } catch (Exception e) {
                 System.out.println("Inserisci un numero, non cercare la falla ;)");
+                avereInfo = true;
             }
-
-            if (scelta == 0) {
-                avereInfo = false;
-            }
-
-
+            printMenu(all);
         }
-
-
-
-            /*System.out.println(separazione);
-            System.out.println(lavoro);
-            System.out.println(separazione);
-            System.out.println(softSkill);
-            */
     }
 
     private static void printMenu(ArrayList<Categoria> lista) {
-        int max = 0;
-        int i = 0;
-
-
-        for (Categoria a : lista) {
-            if (Math.max(max, a.getNomeCategoria().length()) > max) {
-                max = Math.max(max, a.getNomeCategoria().length());
-            }
+        System.out.println(separazione);
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println(String.format("[%d] - %s", (i + 1), lista.get(i).getNomeCategoria()));
         }
-        String start = "| [" + lista.size() + "] - ";
-        int startSpace = start.length();
-        String end = " |";
-        int endSpace = end.length();
-
-        for (i = 0; i < max; i++) {
-            System.out.print("-");
-        }
-        System.out.print("\n");
-
-        for (i = 0; i < lista.size(); i++) {
-            String testo = lista.get(i).getNomeCategoria();
-            String space = "";
-            if (testo.length() != max) {
-                for (int j = 0; j < (max - testo.length()); j++) {
-                    space += " ";
-                }
-            }
-            System.out.println(String.format("| [%d] - %s%s |", (i + 1), testo, space));
-        }
-        for (i = 0; i < max; i++) {
-            System.out.print("-");
-        }
-        System.out.print("\n");
-
-
+        System.out.println(separazione);
     }
-
-    private static void prettyPrit(String text) throws InterruptedException {
-        for (Character c : text.toCharArray()) {
-            System.out.print(c);
-            Thread.sleep(5);
-        }
-        System.out.print("\n");
-    }
-
 }

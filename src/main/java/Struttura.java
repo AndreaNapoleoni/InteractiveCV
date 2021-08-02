@@ -36,10 +36,21 @@ public class Struttura {
         }
     }
 
+    public Struttura(String titolo, ArrayList<String> elementi) {
+        Titolo = titolo;
+        this.elementi = elementi;
+    }
+
     public void removeElement(String elemento) {
         if (this.elementi.contains(elemento)) {
             this.elementi.remove(elemento);
         }
+    }
+
+    public Struttura(String titolo, String sottotitolo, ArrayList<String> elementi) {
+        Titolo = titolo;
+        Sottotitolo = sottotitolo;
+        this.elementi = elementi;
     }
 
     public Struttura() {

@@ -15,6 +15,9 @@ public class Main {
     private static String AUTHOR = "Andrea Napoleoni";
     private static String BIRTH = "12/02/1994";
     private static String pattern = "dd/MM/yyyy";
+    private static String separazione = "";
+    private static String benvenuto = "";
+    private static String presentazione = "";
 
     public static void main(String[] args) throws IOException, ParseException, InterruptedException {
 
@@ -23,9 +26,9 @@ public class Main {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        String separazione = "******************************************************";
-        String benvenuto = String.format("Ciao! Ti do il benvenuto nel mio progetto di \"CV Interattivo\"");
-        String presentazione = String.format("Mi chiamo %s ed ho %d anni.\n" +
+        separazione = "******************************************************";
+        benvenuto = String.format("Ciao! Ti do il benvenuto nel mio progetto di \"CV Interattivo\"");
+        presentazione = String.format("Mi chiamo %s ed ho %d anni.\n" +
                 "Sono uno sviluppatore con forte orientamento alla programmazione ad oggetti lato backend.\n" +
                 "Oltre ad aver maturato esperienza con le diverse tecnologie, ho sviluppato attitudine a lavorare " +
                 "in team ed alta flessibilità nel seguire più flussi contemporaneamente.\n" +
@@ -138,7 +141,6 @@ public class Main {
         ide.addStruttura(new Struttura("VS Code"));
         ide.addStruttura(new Struttura("Eclipse"));
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
         ArrayList<Categoria> all = new ArrayList<Categoria>();
         all.add(lavoro);
         all.add(softSkill);
@@ -146,25 +148,9 @@ public class Main {
         all.add(competenze);
         all.add(ide);
         all.add(lingue);
-/*
-            System.out.println(separazione);
-            for(Categoria c : all){
-                    System.out.println(c);
-                    System.out.println(separazione);
-            }
-*/
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        System.out.println(separazione);
-        System.out.println(benvenuto);
-        System.out.println(separazione);
-        System.out.println(presentazione);
-        System.out.println(separazione);
-        System.out.println("Cosa posso raccontarti di me?\n");
-
-        for (int i = 0; i < all.size(); i++) {
-            System.out.println(String.format("[%d] - %s", (i + 1), all.get(i).getNomeCategoria()));
-        }
-        System.out.println("------------");
+        printMenu(all);
         System.out.println("[0] - Esci");
         ArrayList<Categoria> copia = all;
 
@@ -193,8 +179,8 @@ public class Main {
                             if (struttura.getSottotitolo().length() > 0) {
                                 System.out.println(struttura.getSottotitolo());
                             }
-                            for(String str : struttura.getElementi()){
-                                System.out.println(" - "+str);
+                            for (String str : struttura.getElementi()) {
+                                System.out.println(" - " + str);
                             }
 
                         }
@@ -204,9 +190,7 @@ public class Main {
 
                         copia.remove(copia.get(scelta - 1));
 
-                        for (int i = 0; i < all.size(); i++) {
-                            System.out.println(String.format("[%d] - %s", (i + 1), copia.get(i).getNomeCategoria()));
-                        }
+                        printMenu(copia);
                     } else {
                         System.out.println("Mi dispiace ma hai scelto un'opzione non valida");
                     }
@@ -231,6 +215,44 @@ public class Main {
             System.out.println(separazione);
             System.out.println(softSkill);
             */
+    }
+
+    private static void printMenu(ArrayList<Categoria> lista) {
+        int max = 0;
+        int i = 0;
+
+
+        for (Categoria a : lista) {
+            if (Math.max(max, a.getNomeCategoria().length()) > max) {
+                max = Math.max(max, a.getNomeCategoria().length());
+            }
+        }
+        String start = "| [" + lista.size() + "] - ";
+        int startSpace = start.length();
+        String end = " |";
+        int endSpace = end.length();
+
+        for (i = 0; i < max; i++) {
+            System.out.print("-");
+        }
+        System.out.print("\n");
+
+        for (i = 0; i < lista.size(); i++) {
+            String testo = lista.get(i).getNomeCategoria();
+            String space = "";
+            if (testo.length() != max) {
+                for (int j = 0; j < (max - testo.length()); j++) {
+                    space += " ";
+                }
+            }
+            System.out.println(String.format("| [%d] - %s%s |", (i + 1), testo, space));
+        }
+        for (i = 0; i < max; i++) {
+            System.out.print("-");
+        }
+        System.out.print("\n");
+
+
     }
 
     private static void prettyPrit(String text) throws InterruptedException {

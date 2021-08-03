@@ -59,79 +59,65 @@ public class Main {
         String triennDate = "Laurea triennale | Ott. 2014- Ott. 2018";
         String laureaTrienn = "Laurea triennale in Informatica e Tecnologie per la Produzione del Software\n " +
                 "\tTesi: Analisi e Progettazione di un sistema per la prenotazione e gestione di aule universitarie.";
+        ArrayList<Categoria> all = new ArrayList<Categoria>();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         Struttura esperienza1 = new Struttura("Test Automation Engeneer",
                 new ArrayList<String>(Arrays.asList(reply, sviluppoTestSuBrowser, creazioneDB, dashboard, git, dockerKubernetes, mvngradle)));
         Categoria lavoro = new Categoria("Esperienze lavorative", new ArrayList<Struttura>(Collections.singleton(esperienza1)));
+        all.add(lavoro);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         Struttura esperienza2 = new Struttura(uniLavoro, new ArrayList<String>(Arrays.asList(lavoroInTeam, problemSolving, tempo, proattivo)));
         Categoria softSkill = new Categoria("Soft Skill", new ArrayList<Struttura>(Collections.singleton(esperienza2)));
+        all.add(softSkill);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
         Struttura magistrale = new Struttura(magistr, magistrDate, new ArrayList<String>(Collections.singleton(laureaMagistr)));
         Struttura triennale = new Struttura(trienn, triennDate, new ArrayList<String>(Collections.singleton(laureaTrienn)));
         Categoria istruzione = new Categoria("Istruzione", new ArrayList<Struttura>(Arrays.asList(magistrale, triennale)));
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        Categoria lingue = new Categoria("Lingue");
-        Struttura italiano = new Struttura();
-        italiano.setTitolo("Italiano");
-        italiano.setSottotitolo("Madrelingua");
-        Struttura inglese = new Struttura();
-        inglese.setTitolo("Inglese");
-        inglese.addElement("Ascolto: B2");
-        inglese.addElement("Parlato: B2");
-        inglese.addElement("Scritto: B1");
-        lingue.addStruttura(italiano);
-        lingue.addStruttura(inglese);
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        Categoria contatti = new Categoria("Contatti");
-        Struttura email = new Struttura();
-        email.setTitolo("E-mail");
-        email.setSottotitolo("napoleoniandrea@pec.it");
-        Struttura telefono = new Struttura();
-        telefono.setTitolo("Telefono");
-        telefono.setSottotitolo("+39 3791756740");
-        contatti.addStruttura(email);
-        contatti.addStruttura(telefono);
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        Categoria competenze = new Categoria("Competenze");
-        competenze.addStruttura(new Struttura("Git", "7/10"));
-        competenze.addStruttura(new Struttura("Java", "8/10"));
-        competenze.addStruttura(new Struttura("MySQL", "7/10"));
-        competenze.addStruttura(new Struttura("Docker", "6/10"));
-        competenze.addStruttura(new Struttura("Kubernetes", "5/10"));
-        competenze.addStruttura(new Struttura("Selenium", "8/10"));
-        competenze.addStruttura(new Struttura("Appium", "8/10"));
-        competenze.addStruttura(new Struttura("Maven", "7/10"));
-        competenze.addStruttura(new Struttura("Gradle", "5/10"));
-        competenze.addStruttura(new Struttura("HTML & CSS", "6/10"));
-        competenze.addStruttura(new Struttura("Node-RED", "9/10"));
-        competenze.addStruttura(new Struttura("Sistemi Unix", "7/10"));
-        competenze.addStruttura(new Struttura("Office", "7/10"));
-        competenze.addStruttura(new Struttura("SSH", "8/10"));
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        Categoria ide = new Categoria("IDE");
-        ide.addStruttura(new Struttura("IntelliJ"));
-        ide.addStruttura(new Struttura("VS Code"));
-        ide.addStruttura(new Struttura("Eclipse"));
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        ArrayList<Categoria> all = new ArrayList<Categoria>();
-        all.add(lavoro);
-        all.add(softSkill);
         all.add(istruzione);
-        all.add(competenze);
-        all.add(ide);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        Struttura italiano = new Struttura("Italiano", "Madrelingua");
+        Struttura inglese = new Struttura("Inglese", new ArrayList<String>(Arrays.asList("Ascolto: B2", "Parlato: B2", "Scritto: B1")));
+        Categoria lingue = new Categoria("Lingue", new ArrayList<Struttura>(Arrays.asList(italiano, inglese)));
         all.add(lingue);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+        Struttura email = new Struttura("E-mail", "napoleoniandrea@pec.it");
+        Struttura telefono = new Struttura("Telefono", "+393791756740");
+        Categoria contatti = new Categoria("Contatti", new ArrayList<Struttura>(Arrays.asList(email, telefono)));
+        all.add(contatti);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        Categoria competenze = new Categoria("Competenze",
+                new ArrayList<Struttura>(Arrays.asList(
+                        new Struttura("Java", "9/10"),
+                        new Struttura("Git", "7/10"),
+                        new Struttura("MySQL", "7/10"),
+                        new Struttura("Docker", "6/10"),
+                        new Struttura("Kubernetes", "4/10"),
+                        new Struttura("Selenium", "8/10"),
+                        new Struttura("Appium", "8/10"),
+                        new Struttura("Maven", "7/10"),
+                        new Struttura("Gradle", "5/10"),
+                        new Struttura("HTML & CSS", "6/10"),
+                        new Struttura("Node-RED", "9/10"),
+                        new Struttura("Sistemi Unix", "7/10"),
+                        new Struttura("Office", "7/10"),
+                        new Struttura("SSH", "8/10"))
+                )
+        );
+        all.add(competenze);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        Categoria ide = new Categoria("IDE", new ArrayList<Struttura>(Arrays.asList(
+                new Struttura("IntelliJ"),
+                new Struttura("VS Code"),
+                new Struttura("Eclipse")
+        )));
+        all.add(ide);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
         System.out.println(separazione);
         System.out.println(benvenuto);
         System.out.println(presentazione);
-
         printMenu(all);
         ArrayList<Categoria> copia = all;
-
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
         boolean avereInfo = true;
         int scelta = 10;
         String opt = "";
